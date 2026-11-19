@@ -1,0 +1,18 @@
+[project]
+name = "job-copilot"
+version = "0.1.0"
+description = "求职投递编排器：三源去重、节奏控制、幂等台账、六项战报"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = ["pyyaml>=6.0"]
+
+[project.scripts]
+jobcopilot = "jobcopilot.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

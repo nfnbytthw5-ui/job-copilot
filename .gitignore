@@ -1,0 +1,8 @@
+config.yaml
+data/
+reports/
+adapters/*/session.json
+adapters/*/cookies*
+__pycache__/
+*.pyc
+.venv/

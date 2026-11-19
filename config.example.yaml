@@ -1,0 +1,74 @@
+# job-copilot 示例配置
+# 全部为占位值，不含任何个人数据。复制为 config.yaml 后按需修改。
+
+resume:
+  # 简历版本标识。建议用「文件字节数@上传时间」或内容哈希，
+  # 目的是三个月后还能回答"投那家的时候用的是哪版简历"。
+  version: "example-568994B@2026-11-19"
+
+account:
+  # 账号指纹，仅用于多账号时区分台账。不要写手机号、邮箱。
+  fingerprint: "default"
+
+paths:
+  ledger_db: data/ledger.db
+  reports_dir: reports
+
+blacklist:
+  # 闸1：投递前先过这里。命中直接跳过，不消耗页面请求。
+  companies:
+    - "某某制药"
+    - "某某人力资源"
+  industries:
+    - "制药"
+    - "医药"
+    - "医疗器械"
+    - "人力资源服务"
+  title_keywords:
+    - "销售"
+    - "保险代理"
+    - "品检员"
+    - "检验员"
+
+pacing:
+  batch_size: 8
+  interval_seconds: 6
+  interval_jitter: 2
+  batch_pause_seconds: 90
+  platform_daily_cap: 50
+  total_daily_cap: 80
+  session_max_minutes: 45
+
+circuit_breaker:
+  fail_streak_limit: 3
+  stop_on_needs_human: true
+  stop_on_degraded_health: true
+  human_takeover_timeout: 600
+
+recovery:
+  # pending 超过这个时长按「有证据=success / 无证据=unknown」判定
+  stale_minutes: 30
+
+platforms:
+  mock:
+    enabled: true
+    module: adapters/mock/adapter.py
+    display_name: "离线演示"
+    query:
+      keywords: "质量总监"
+      city: "台州"
+      salary_min: 30000
+      pages: 3
+    options:
+      job_count: 60
+
+  # 真实平台示例：复制 adapters/_template 后启用
+  # example_platform:
+  #   enabled: false
+  #   module: adapters/example_platform/adapter.py
+  #   display_name: "示例平台"
+  #   query:
+  #     keywords: "质量经理"
+  #     city: "台州"
+  #   pacing:
+  #     platform_daily_cap: 20   # 按平台体量收窄
