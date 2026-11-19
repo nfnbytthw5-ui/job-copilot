@@ -79,6 +79,7 @@ dry-run 会走完：加载配置 → 黑名单预热 → 模拟取岗 → 三源
 - [`docs/ledger-spec.md`](docs/ledger-spec.md) — 去重规则与台账字段规范（含崩溃恢复）
 - [`docs/pacing.md`](docs/pacing.md) — 节奏与熔断参数表（默认值 + 调整建议）
 - [`docs/report-spec.md`](docs/report-spec.md) — 六项战报口径
+- [`docs/case-boss.md`](docs/case-boss.md) — 第一个真实适配器的踩坑记录（视口、动态坐标、日期面板、三级联动）
 
 ---
 
